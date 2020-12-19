@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anonym.spring.mapper.UserMapper">
+
+    <resultMap id="result" type="com.anonym.spring.pojo.User">
+        <id column="user_id" property="userId"></id>
+        <result column="user_name" property="userName"></result>
+        <result column="user_age" property="userAge"></result>
+        <result column="user_email" property="userEmail"></result>
+        <result column="user_username" property="userUsername"></result>
+        <result column="user_password" property="userPassword"></result>
+    </resultMap>
+
+    <sql id="selectParam">
+        user_id,user_name,user_age,user_email,user_username,user_password
+    </sql>
+    <insert id="insertUser" parameterType="com.anonym.spring.pojo.User">
+        insert into user values(#{userId},#{userName},#{userAge},#{userEmail},#{userUsername},#{userPassword})
+    </insert>
+
+    <select id="selectExistsByParam" parameterType="com.anonym.spring.pojo.User" resultMap="result">
+        select <include refid="selectParam"/>
+        from user
+        <if test="userEmail != null">
+            where user_email = #{userEmail}
+        </if>
+
+        <if test="userUsername != null">
+            where user_username = #{userUsername}
+        </if>
+    </select>
+</mapper>
