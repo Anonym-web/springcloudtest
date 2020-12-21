@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/register")
-    public ResultSet register(@RequestBody User user){
+    public ResultSet register(User user){
         ResultSet resultSet = new ResultSet();
         try{
             if(StringUtils.isEmpty(user.getUserEmail()) || StringUtils.isEmpty(user.getUserUsername()) || StringUtils.isEmpty(user.getUserPassword())){
