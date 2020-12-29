@@ -2,6 +2,7 @@ package com.anonym.spring.util;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
 
@@ -160,12 +161,12 @@ public class RedisUtils {
      * @param value
      * @param scoure
      */
-    public void zAdd(String key,Object value,double scoure){
+    public void zAdd(String key,Set<ZSetOperations.TypedTuple<Object>> value){
         ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
-        zset.add(key,value,scoure);
+        zset.add(key,value);
     }
     /**
-     * 有序集合获取
+     * 有序集合获取 设定最小最大值
      * @param key
      * @param scoure
      * @param scoure1
@@ -174,5 +175,10 @@ public class RedisUtils {
     public Set<Object> rangeByScore(String key, double scoure, double scoure1){
         ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
         return zset.rangeByScore(key, scoure, scoure1);
+    }
+
+    public Set<Object> range(String key, long start, long end){
+        ZSetOperations<String, Object> zset = redisTemplate.opsForZSet();
+        return zset.range(key, start,end);
     }
 }

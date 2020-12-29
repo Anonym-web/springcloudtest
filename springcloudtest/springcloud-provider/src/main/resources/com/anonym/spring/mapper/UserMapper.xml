@@ -9,13 +9,14 @@
         <result column="user_email" property="userEmail"></result>
         <result column="user_username" property="userUsername"></result>
         <result column="user_password" property="userPassword"></result>
+        <result column="user_phone" property="userPhone"></result>
     </resultMap>
 
     <sql id="selectParam">
-        user_id,user_name,user_age,user_email,user_username,user_password
+        user_id,user_name,user_age,user_email,user_username,user_password,user_phone
     </sql>
     <insert id="insertUser" parameterType="com.anonym.spring.pojo.User">
-        insert into user values(#{userId},#{userName},#{userAge},#{userEmail},#{userUsername},#{userPassword})
+        insert into user values(#{userId},#{userName},#{userAge},#{userEmail},#{userUsername},#{userPassword},#{userPhone})
     </insert>
 
     <select id="selectExistsByParam" parameterType="com.anonym.spring.pojo.User" resultMap="result">

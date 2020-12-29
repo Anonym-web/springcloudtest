@@ -19,6 +19,16 @@ public class User implements Serializable {
     private String userEmail;
     private String userUsername;
     private String userPassword;
+    private String userPhone;
+
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

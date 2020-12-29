@@ -40,6 +40,8 @@ public class UserService {
             userParam.setUserEmail(user.getUserEmail());
             User existsTemp = userMapper.selectExistsByParam(userParam);
             if(existsTemp != null){
+                /*将这个用户存到redis中*/
+                redisUtils.set(user.getUserUsername(),user);
                 resultSet.setRetCode("0");
                 resultSet.setRetVal("该邮箱已被使用");
                 return resultSet;
